@@ -13,7 +13,8 @@ import { Assets } from "./Main/Home/http/Api";
 
 function ScreenList() {
   global.INSETS = useSafeAreaInsets();
-  XWidget.initResource(Assets).initReferenceScreen(375, 677);
+  XWidget.initResource(Assets).initReferenceScreen(375, 677);//移动端原型设计最佳分辨率
+  console.log('App.js global.INSETS=',global.INSETS)//{left: 0, top: 20, right: 0, bottom: 0}||{left: 0, top: 44, right: 0, bottom: 34}
   const { Navigator, Screen } = createStackNavigator();
   return <Navigator initialPage={LaunchController} headerMode='none'>
     <Screen name='Launch' component={LaunchController}/>

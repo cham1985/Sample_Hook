@@ -28,6 +28,7 @@ export default function App() {
   console.disableYellowBox = true;
   return <SafeAreaProvider>
     <NavigationContainer>
+      {/*RootSiblingParent 用于显示一个全局浮层按钮*/}
       <RootSiblingParent>
         <ScreenList/>
       </RootSiblingParent>

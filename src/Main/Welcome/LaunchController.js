@@ -6,6 +6,7 @@ import { RNStorage } from '../Common/storage/AppStorage';
 import { XStorage } from 'react-native-easy-app';
 import XLog from "../Common/utils/RFLog";
 
+//不用看,因 我项目的缓存是通过 dva 初始化的
 function LaunchController(props) {
 
   const initSync = async () => {

@@ -16,6 +16,7 @@ import { Colors } from "../../Common/storage/Const";
 let lastClickTime = (new Date()).valueOf();
 const { Navigator, Screen } = createBottomTabNavigator();
 
+//tabbarController
 function MainController(props) {
 
   const tabItemOption = (title, iconChecked, iconUnChecked) => {
@@ -34,6 +35,7 @@ function MainController(props) {
     };
   };
 
+  //监听安卓设备上的后退按钮,避免直接退出app
   const backListener = () => {
     return BackHandler.addEventListener('hardwareBackPress', () => {
       const { state } = tabNavigator.dangerouslyGetState().routes[0];
@@ -60,7 +62,11 @@ function MainController(props) {
     Alert.alert('Token 过期 ', message);
   };
 
+  /**
+   * 所有接口的返回数据都在 initParseDataFunc 方法的 参数回调里 回调,不太方便
+   */
   XHttpConfig().initHttpLogOn(true).initParseDataFunc((result, request, callback) => {
+    console.log('MainController.js XHttpConfig result=',result)
     let { success, json, message, status, response } = result;
     DebugManager.appendHttpLogs(request.params, response);
     if (status === 503) {// token 过期
@@ -75,6 +81,7 @@ function MainController(props) {
   global.tabNavigator = props.navigation;
 
   useEffect(() => {
+    console.log('MainController.js componentDidMount')
     const listener = backListener();
     Notify.TOKEN_EXPIRED.register(tokenExpired);
     return () => {
